@@ -53,12 +53,35 @@ public:
 
             for (auto nbr : l[f])
             {
-                if(!visited[nbr]) {
+                if (!visited[nbr])
+                {
                     q.push(nbr);
                     visited[nbr] = true;
                 }
             }
         }
+    }
+
+    void dfsHelper(bool visited[], int i)
+    {
+        if (!visited[i])
+        {
+            visited[i] = true;
+            cout << i << " ";
+            for (auto node : l[i])
+            {
+                dfsHelper(visited, node);
+            }
+        }
+
+        return;
+    }
+
+    void dfs(int source)
+    {
+        bool *visited = new bool[v]{0};
+
+        dfsHelper(visited, source);
     }
 };
 
@@ -74,5 +97,5 @@ int main()
     g.addEdge(1, 0);
     g.addEdge(0, 4);
 
-    g.bfs(1);
+    g.dfs(1);
 }
